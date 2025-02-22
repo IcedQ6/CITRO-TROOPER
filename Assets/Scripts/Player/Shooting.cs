@@ -9,10 +9,21 @@ public class Shooting : MonoBehaviour
     public float bulletForce = 20f;
     public float shootCooldown = 0.5f;
     private float lastShotTime = 0f;
+    public PlayerController playerController;
 
+    void Start() {
+        playerController = GameObject.FindObjectOfType<PlayerController>();
+    }
+    
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= lastShotTime + shootCooldown) {
+        if(!playerController.isInMech){
+            if(Time.time >= lastShotTime + shootCooldown) {
+                Shoot();
+                lastShotTime = Time.time;
+            }
+        }
+        if (Input.GetMouseButton(0) && Time.time >= lastShotTime + shootCooldown) {
             Shoot();
             lastShotTime = Time.time;
         }

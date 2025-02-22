@@ -8,9 +8,11 @@ public class MechController : MonoBehaviour
     private PlayerController playerController;
     private Vector3 rotationTarget;
     private Vector3 mechTargetPosition;
+    public GameObject player;
 
     public float mechSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
+    public float mechFlySpeed = 30.0f;
     public Rigidbody rb;
     public InputAction playerAction;
     private Vector2 movement;
@@ -55,10 +57,16 @@ public class MechController : MonoBehaviour
         else
         {
             rb.velocity = new Vector3(0, 0, 0);
-            if (playerController.dropDown && !playerController.isInMech) {
+
+            if (playerController.moveToPlayer && !playerController.isInMech && !Input.GetMouseButton(1)) {
                 mechTargetPosition = playerController.transform.position;
-                playerController.isInMech = true;
-                playerController.dropDown = false;
+                
+                var step =  mechFlySpeed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+                if (Vector3.Distance(transform.position, player.transform.position) < 0.001f) {
+                    playerController.isInMech = true;
+                    playerController.moveToPlayer = false;
+                }
             }
         }
     }
