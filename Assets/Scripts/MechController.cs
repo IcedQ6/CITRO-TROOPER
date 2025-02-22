@@ -12,7 +12,8 @@ public class MechController : MonoBehaviour
 
     public float mechSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
-    public float mechFlySpeed = 30.0f;
+    public float mechFlySpeed = 30f;
+    public float acceleration = 2f;
     public Rigidbody rb;
     public InputAction playerAction;
     private Vector2 movement;

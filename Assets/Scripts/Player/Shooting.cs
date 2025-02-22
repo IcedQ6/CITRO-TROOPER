@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    public Transform firePoint;
+    public Transform firePoint1;
+    public Transform firePoint2;
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
     public float shootCooldown = 0.5f;
@@ -31,8 +32,11 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+        GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        GameObject bullet2 = Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
+        Rigidbody rb1 = bullet1.GetComponent<Rigidbody>();
+        Rigidbody rb2 = bullet2.GetComponent<Rigidbody>();
+        rb1.AddForce(firePoint1.forward * bulletForce, ForceMode.Impulse);
+        rb2.AddForce(firePoint2.forward * bulletForce, ForceMode.Impulse);
     }
 }
