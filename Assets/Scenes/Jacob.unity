@@ -2268,7 +2268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 83caed1d0d58a094296b6d8ef5bca25c, type: 2}
+  - {fileID: 2100000, guid: dcbd3439f13e63e42ac724c34b91904e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2306,13 +2306,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188539662}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 500, y: 1, z: 50}
+  m_LocalScale: {x: 10.810465, y: 0.0960663, z: 4.803315}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 16789531}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1262149610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4233,9 +4233,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfa1a3c276cfb444a7b380af1b6455f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: -20, y: -10}
-  endPos: {x: 20, y: 10}
+  enemyType: 0
+  possitionArray: []
+  level: 0
+  wave: 0
   enemyMoveSpeed: 5
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  shotSpeed: 20
+  shootDelay: 0.5
+  moveDelay: 3
+  delayTilCharge: 2
+  chargeSpeed: 25
 --- !u!33 &3751894775208802574
 MeshFilter:
   m_ObjectHideFlags: 0
