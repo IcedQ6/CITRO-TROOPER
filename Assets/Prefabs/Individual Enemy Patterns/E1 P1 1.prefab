@@ -13,6 +13,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 961911736021997248, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3563718029630464102, guid: f17e8237f9a427d4487c17aaafa6d814, type: 3}
+    - target: {fileID: 961911736021997248, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
       propertyPath: enemyMoveSpeed
       value: 12
       objectReference: {fileID: 0}

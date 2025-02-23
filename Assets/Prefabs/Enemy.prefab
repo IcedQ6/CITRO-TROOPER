@@ -172,8 +172,10 @@ MonoBehaviour:
   level: 0
   wave: 0
   enemyMoveSpeed: 5
-  bulletPrefab: {fileID: 6056164409117408364, guid: cac8d43ee64efe64d976d956b0f33a73, type: 3}
+  bulletPrefab: {fileID: 3563718029630464102, guid: f17e8237f9a427d4487c17aaafa6d814, type: 3}
   firePoint: {fileID: 1753266948688355505}
   shotSpeed: 20
   shootDelay: 0.5
   moveDelay: 3
+  delayTilCharge: 2
+  chargeSpeed: 25

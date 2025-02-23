@@ -151,11 +151,13 @@ public class Enemy : MonoBehaviour
 
         if (Time.time >= lastShotTime + shootDelay)
         {
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(firePoint.forward * shotSpeed, ForceMode.Impulse);
 
             lastShotTime = Time.time;
+            Debug.Log(lastShotTime);
         }
 
     }
