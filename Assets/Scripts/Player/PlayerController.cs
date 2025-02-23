@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +9,6 @@ public class PlayerController : MonoBehaviour
     [Header("Person")]
     public float moveSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
-    public float accel = 1.0f;
-    public float deaccel = 1.0f;
-    public Collider playerCollider;
     public Rigidbody rb;
 
     [Header("Random")]
@@ -22,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool isInMech = true;
     public GameObject mech;
     public bool moveToPlayer = false;
+    private MechController mechController;
 
     private void OnEnable()
     {
@@ -40,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(1)) 
         {
             if (isInMech) {
+                gameObject.tag = "Player";
                 EjectFromMech();
             }
         } 

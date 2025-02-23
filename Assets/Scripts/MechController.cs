@@ -9,15 +9,22 @@ public class MechController : MonoBehaviour
     private Vector3 rotationTarget;
     private Vector3 mechTargetPosition;
     public GameObject player;
-
     public float mechSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
     public float mechFlySpeed = 30f;
     public float acceleration = 2f;
+    private float currentFlySpeed;
     public Rigidbody rb;
     public InputAction playerAction;
     private Vector2 movement;
+    public bool moving = false;
 
+    public Camera mainCamera;       
+    public float shakeDuration = 0.2f;
+    public float shakeMagnitude = 0.5f; 
+    private Vector3 originalCameraPosition; 
+
+    private bool isMovingToPlayer = false;
     private void OnEnable()
     {
         playerAction.Enable();
@@ -31,6 +38,7 @@ public class MechController : MonoBehaviour
     void Start()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
+        originalCameraPosition = mainCamera.transform.position; 
     }
 
     void Update()
@@ -58,15 +66,32 @@ public class MechController : MonoBehaviour
         else
         {
             rb.velocity = new Vector3(0, 0, 0);
-
-            if (playerController.moveToPlayer && !playerController.isInMech && !Input.GetMouseButton(1)) {
-                mechTargetPosition = playerController.transform.position;
+            if(!Input.GetMouseButton(1)){
+                moving = true;
+            }
+            if (playerController.moveToPlayer && !playerController.isInMech && moving) {
                 
-                var step =  mechFlySpeed * Time.deltaTime;
+                if (!isMovingToPlayer) {
+                    currentFlySpeed = mechFlySpeed;
+                    isMovingToPlayer = true;
+                    gameObject.tag = "EjectSlam";
+                    mechTargetPosition = playerController.transform.position;
+                }
+
+                currentFlySpeed += acceleration * Time.deltaTime;
+
+                var step = currentFlySpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+
                 if (Vector3.Distance(transform.position, player.transform.position) < 0.001f) {
+                    StartCoroutine(ShakeCamera(currentFlySpeed/200));
+                    moving = false;
+                    gameObject.tag = "Player";
+                    player.tag = "Default";
                     playerController.isInMech = true;
                     playerController.moveToPlayer = false;
+
+                    isMovingToPlayer = false;
                 }
             }
         }
@@ -88,6 +113,31 @@ public class MechController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(directionToLookAt);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
+        }
+    }
+
+    private IEnumerator ShakeCamera(float intensity)
+    {
+        float elapsed = 0f;
+        float shakeStrength = Mathf.Clamp(intensity, 0f, 1f); 
+
+        while (elapsed < shakeDuration)
+        {
+            Vector3 shakeOffset = Random.insideUnitSphere * shakeStrength;
+            mainCamera.transform.position = originalCameraPosition + shakeOffset;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCamera.transform.position = originalCameraPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            StartCoroutine(ShakeCamera(currentFlySpeed));
         }
     }
 }
