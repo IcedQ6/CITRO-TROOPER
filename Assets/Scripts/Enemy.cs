@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ public class Enemy : MonoBehaviour
     private int lastPositionIndex = 0;
     public int level;
     public int wave;
+
+
 
     [Header("Adjustable parameters")]
     public float enemyMoveSpeed = 5.0f;
@@ -70,7 +73,6 @@ public class Enemy : MonoBehaviour
     private void moveBetweenPoints()
     {
         possitionArrayIndex = distanceToNextIndex();
-        Debug.Log(possitionArrayIndex);
 
         if (possitionArrayIndex == 0)
         {
