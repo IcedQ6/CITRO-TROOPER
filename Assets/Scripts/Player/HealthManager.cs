@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class HealthManager : MonoBehaviour
 {
     public static int hearts = 3;
-    public float invincibilityDuration = 1f;
+    public float invincibilityDuration = 2f;
     private float invincibilityTimer = 0f;
     private bool isInvincible = false;
+    public GameObject flash;
 
     public Image[] heartList;
-
+    void Start(){
+        hearts = 3;
+    }
     void Update()
     {
         if (isInvincible) 
@@ -44,7 +49,7 @@ public class HealthManager : MonoBehaviour
 
         if (hearts <= 0) 
         {
-            //Die();
+            SceneManager.LoadScene("Death");
         }
     }
 
@@ -55,6 +60,7 @@ public class HealthManager : MonoBehaviour
         invincibilityTimer = invincibilityDuration; 
 
         StartCoroutine(FlashPlayer());
+        flash.SetActive(false);
     }
 
     private IEnumerator FlashPlayer()
@@ -72,25 +78,18 @@ public class HealthManager : MonoBehaviour
             if (flashTime % 0.2f < 0.1f)
             {
                 mat.color = Color.red;
+                flash.SetActive(true);
             }
             else
             {
                 mat.color = originalColor;
+                flash.SetActive(false);
             }
 
             yield return null;
         }
 
         mat.color = originalColor;
-    }
-
-    void Die()
-
-    {
-
-        // Optional: play death animation, display game over UI
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
-
+        flash.SetActive(false);
     }
 }

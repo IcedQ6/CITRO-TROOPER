@@ -6,8 +6,10 @@ public class BossSpawner : MonoBehaviour
     public GameObject[] bossObjects;  // Array to hold the pre-existing bosses
     public GameObject[] Titles;  // Array to hold the pre-existing bosses
     public GameObject[] music;  // Array to hold the pre-existing bosses
+    public GameObject[] floors;  // Array to hold the pre-existing bosses
     public GameObject countdown;
     private int currentBossIndex = 0;  // Track which boss is being spawned next
+    private HealthManager health;
 
     public Camera mainCamera;  // Reference to the camera for screen shake
     public float shakeDuration = 0.3f;  // Duration of screen shake
@@ -16,11 +18,13 @@ public class BossSpawner : MonoBehaviour
     private title countdowntimer;
     private int count = 0;
     private int mCount = 0;
+    private int fCount = 0;
 
     private Vector3 originalCameraPos;  // Store the original camera position
 
     void Start()
     {
+        health = GameObject.FindObjectOfType<HealthManager>();
         countdowntimer = GameObject.FindObjectOfType<title>();
         if (bossObjects.Length == 3)  // Ensure there are exactly 3 bosses
         {
@@ -34,8 +38,9 @@ public class BossSpawner : MonoBehaviour
     }
 
     IEnumerator WaitAndStartSpawning()
-    {
+    {        
         // Wait for the initial 5 seconds before spawning the first boss
+        floors[fCount].SetActive(true);
         Titles[count].SetActive(true);
         countdown.SetActive(true);
         yield return new WaitForSeconds(initialDelay);
@@ -77,9 +82,12 @@ public class BossSpawner : MonoBehaviour
         Titles[count].SetActive(true);
         countdown.SetActive(true);
         music[mCount].SetActive(false);
+        floors[fCount].SetActive(false);
+        fCount++;
+        floors[fCount].SetActive(true);
         mCount++;
         yield return new WaitForSeconds(5f);
-
+    
         // Spawn the next boss
         SpawnNextBoss();
     }

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Boss1Health : MonoBehaviour
 {
-    public static float health = 10f;
+    public static float health = 400f;
     public float bulletDamage = 5f;
     public float EjectSlamDamage = 50f;
     public Image healthBar; 
-    public float maxHealth = 800f;
+    public float maxHealth = 400f;
     public GameObject thinbg;
     private BossMain bossMain;
 
@@ -42,6 +42,7 @@ public class Boss1Health : MonoBehaviour
         }
 
         if (health <= 0) {
+            health = 3;
             Die();
         }
     }
