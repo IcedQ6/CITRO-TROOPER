@@ -5,11 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public GameObject hitEffect;
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Player")){
-            // stop it being strange
-        } else {
+        if(!other.gameObject.CompareTag("Player")){
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 5f);
             Destroy(gameObject);

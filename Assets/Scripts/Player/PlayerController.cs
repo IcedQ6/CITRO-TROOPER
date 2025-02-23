@@ -8,9 +8,6 @@ public class PlayerController : MonoBehaviour
     [Header("Person")]
     public float moveSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
-    public float accel = 1.0f;
-    public float deaccel = 1.0f;
-    public Collider playerCollider;
     public Rigidbody rb;
 
     [Header("Random")]
@@ -40,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(1)) 
         {
             if (isInMech) {
+                gameObject.tag = "Player";
                 EjectFromMech();
             }
         } 

@@ -9,7 +9,6 @@ public class MechController : MonoBehaviour
     private Vector3 rotationTarget;
     private Vector3 mechTargetPosition;
     public GameObject player;
-
     public float mechSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
     public float mechFlySpeed = 30f;
@@ -60,11 +59,14 @@ public class MechController : MonoBehaviour
             rb.velocity = new Vector3(0, 0, 0);
 
             if (playerController.moveToPlayer && !playerController.isInMech && !Input.GetMouseButton(1)) {
+                gameObject.tag = "EjectSlam";
                 mechTargetPosition = playerController.transform.position;
                 
                 var step =  mechFlySpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
-                if (Vector3.Distance(transform.position, player.transform.position) < 0.001f) {
+                if (Vector3.Distance(transform.position, player.transform.position) < 0.001f) { 
+                    gameObject.tag = "Player";
+                    player.tag = "Default";
                     playerController.isInMech = true;
                     playerController.moveToPlayer = false;
                 }
