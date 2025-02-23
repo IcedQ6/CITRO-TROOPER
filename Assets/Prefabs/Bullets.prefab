@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8962906458493486048}
   - component: {fileID: 8286212369085522670}
   - component: {fileID: 3557509194041739787}
+  - component: {fileID: 2347522066669027083}
   - component: {fileID: 8260333748566120559}
   m_Layer: 0
   m_Name: Projectile
@@ -126,6 +127,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 6379628574829495298}
+--- !u!114 &2347522066669027083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602782291199582606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259b3217638785a4f9d4e1a7fe9687f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &8260333748566120559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,6 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389060606021479691}
+  - component: {fileID: 4972179119778412769}
   m_Layer: 0
   m_Name: Bullets
   m_TagString: Untagged
@@ -180,6 +194,18 @@ Transform:
   - {fileID: 3649534534781801360}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4972179119778412769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056164409117408364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259b3217638785a4f9d4e1a7fe9687f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6379628574829495298
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class Shooting : MonoBehaviour
 
     void Start() {
         playerController = GameObject.FindObjectOfType<PlayerController>();
+        
     }
     
     void Update()
@@ -28,6 +29,7 @@ public class Shooting : MonoBehaviour
             Shoot();
             lastShotTime = Time.time;
         }
+
     }
 
     void Shoot()
@@ -39,4 +41,5 @@ public class Shooting : MonoBehaviour
         rb1.AddForce(firePoint1.forward * bulletForce, ForceMode.Impulse);
         rb2.AddForce(firePoint2.forward * bulletForce, ForceMode.Impulse);
     }
+
 }
