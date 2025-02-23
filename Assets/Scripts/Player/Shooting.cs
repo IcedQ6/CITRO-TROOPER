@@ -40,7 +40,7 @@ public class Shooting : MonoBehaviour
         rb1.AddForce(firePoint1.forward * bulletForce, ForceMode.Impulse);
         rb2.AddForce(firePoint2.forward * bulletForce, ForceMode.Impulse);
 
-        Destroy(bullet1, 5f);
-        Destroy(bullet2, 5f);
+        Destroy(bullet1, 2f);
+        Destroy(bullet2, 2f);
     }
 }

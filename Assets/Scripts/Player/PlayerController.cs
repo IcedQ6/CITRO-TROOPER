@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool isInMech = true;
     public GameObject mech;
     public bool moveToPlayer = false;
+    private MechController mechController;
 
     private void OnEnable()
     {
