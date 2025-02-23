@@ -12,21 +12,19 @@ public class MechController : MonoBehaviour
     public float mechSpeed = 5.0f;
     public float rotationSpeed = 30.0f;
     public float mechFlySpeed = 30f;
-    public float acceleration = 2f; // Speed increase per second
-    private float currentFlySpeed; // To track the speed increase
+    public float acceleration = 2f;
+    private float currentFlySpeed;
     public Rigidbody rb;
     public InputAction playerAction;
     private Vector2 movement;
-    public bool moving = false; // so u cant spam right click out of mech
+    public bool moving = false;
 
-    // Screen Shake Variables
-    public Camera mainCamera;         // Reference to the main camera
-    public float shakeDuration = 0.2f; // Duration of the shake effect
-    public float shakeMagnitude = 0.5f; // Base strength of the shake effect
-    private Vector3 originalCameraPosition; // Store original camera position for shake
+    public Camera mainCamera;       
+    public float shakeDuration = 0.2f;
+    public float shakeMagnitude = 0.5f; 
+    private Vector3 originalCameraPosition; 
 
-    private bool isMovingToPlayer = false; // To track if the mech is moving towards the player
-
+    private bool isMovingToPlayer = false;
     private void OnEnable()
     {
         playerAction.Enable();
@@ -40,7 +38,7 @@ public class MechController : MonoBehaviour
     void Start()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
-        originalCameraPosition = mainCamera.transform.position; // Store initial camera position
+        originalCameraPosition = mainCamera.transform.position; 
     }
 
     void Update()
@@ -118,15 +116,13 @@ public class MechController : MonoBehaviour
         }
     }
 
-    // Coroutine to handle the camera shake effect based on speed
     private IEnumerator ShakeCamera(float intensity)
     {
         float elapsed = 0f;
-        float shakeStrength = Mathf.Clamp(intensity, 0f, 1f); // Adjust shake magnitude based on speed
+        float shakeStrength = Mathf.Clamp(intensity, 0f, 1f); 
 
         while (elapsed < shakeDuration)
         {
-            // Apply random offset to camera position based on the intensity
             Vector3 shakeOffset = Random.insideUnitSphere * shakeStrength;
             mainCamera.transform.position = originalCameraPosition + shakeOffset;
 
@@ -134,7 +130,6 @@ public class MechController : MonoBehaviour
             yield return null;
         }
 
-        // Reset camera position after shake
         mainCamera.transform.position = originalCameraPosition;
     }
 
@@ -142,7 +137,6 @@ public class MechController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Trigger Screen Shake based on the mech's current speed
             StartCoroutine(ShakeCamera(currentFlySpeed));
         }
     }

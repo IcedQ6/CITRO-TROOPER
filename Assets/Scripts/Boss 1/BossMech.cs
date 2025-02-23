@@ -15,15 +15,16 @@ public class BossMech : MonoBehaviour
     private bool isShooting = false; 
     private float lastShootTime = 0f; 
     private float shootingTimeElapsed = 0f; 
-
     public Camera mainCamera;       
     public float shakeDuration = 0.2f;
     private Vector3 originalCameraPosition; 
+    private BossMain bossMain;
 
     void Start()
     {
         originalCameraPosition = mainCamera.transform.position;
         StartCoroutine(MoveAndShootRoutine());
+        bossMain = GameObject.FindObjectOfType<BossMain>();
     }
 
     private IEnumerator MoveAndShootRoutine()
@@ -31,7 +32,6 @@ public class BossMech : MonoBehaviour
         while (true)
         {
             yield return new WaitUntil(() => BossMain.GetComponent<BossMain>().arrived);
-
             yield return StartCoroutine(MoveToTarget(BossMain.transform.position));
 
             isShooting = true;
@@ -44,7 +44,7 @@ public class BossMech : MonoBehaviour
     private IEnumerator MoveToTarget(Vector3 target)
     {
         float currentSpeed = initialMoveSpeed;
-
+        
         while (Vector3.Distance(transform.position, target) > 0.05f) 
         {
             transform.position = Vector3.MoveTowards(transform.position, target, currentSpeed * Time.deltaTime);
@@ -58,7 +58,7 @@ public class BossMech : MonoBehaviour
 
             yield return null;
         }
-
+        bossMain.invincible = true;
         StartCoroutine(ShakeCamera(currentSpeed));
     }
 

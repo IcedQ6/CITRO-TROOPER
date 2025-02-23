@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class BossMain : MonoBehaviour
+public class BossMain2 : MonoBehaviour
 {
     public float moveSpeed = 12.0f;
     public Transform player; 
     public float moveRadius = 10f; 
     private Vector3 targetPosition; 
     public bool arrived = false;
+    public bool invincible = false;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class BossMain : MonoBehaviour
         {
             targetPosition = GetRandomPositionAroundPlayer();
             yield return StartCoroutine(MoveToTarget(targetPosition));
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(6.0f);
         }
     }
 
@@ -35,6 +36,7 @@ public class BossMain : MonoBehaviour
 
     private IEnumerator MoveToTarget(Vector3 target)
     {
+        invincible = false;
         while (Vector3.Distance(transform.position, target) > 0.05f) 
         {
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
