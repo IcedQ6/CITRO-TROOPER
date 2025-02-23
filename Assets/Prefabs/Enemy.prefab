@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damageAmount: 25
+  bulletDamage: 5
+  EjectSlamDamage: 50
 --- !u!114 &961911736021997248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ MonoBehaviour:
   level: 0
   wave: 0
   enemyMoveSpeed: 5
-  bulletPrefab: {fileID: 3563718029630464102, guid: f17e8237f9a427d4487c17aaafa6d814, type: 3}
+  bulletPrefab: {fileID: 7047981495198222191, guid: 1a7312eaa046fa84198861e32726fb94, type: 3}
   firePoint: {fileID: 1753266948688355505}
   shotSpeed: 20
   shootDelay: 0.5

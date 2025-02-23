@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Boss1Health : MonoBehaviour
 {
-    public static float health = 800f;
+    public static float health = 10f;
     public float bulletDamage = 5f;
     public float EjectSlamDamage = 50f;
     public Image healthBar; 

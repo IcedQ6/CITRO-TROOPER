@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 961911736021997248, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 3563718029630464102, guid: f17e8237f9a427d4487c17aaafa6d814, type: 3}
+      objectReference: {fileID: 7047981495198222191, guid: 1a7312eaa046fa84198861e32726fb94, type: 3}
     - target: {fileID: 961911736021997248, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
       propertyPath: enemyMoveSpeed
       value: 12
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 1059107440895146333, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173708265742415322, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8533232659999012966, guid: d62ac04722818f541b192f4ef5e98621, type: 3}
       propertyPath: m_Name

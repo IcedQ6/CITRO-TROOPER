@@ -26,7 +26,8 @@ public class HealthManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") && !isInvincible && !gameObject.CompareTag("Default") && !gameObject.CompareTag("EjectSlam")) 
+        if (other.gameObject.CompareTag("Enemy") && !isInvincible && !gameObject.CompareTag("Default") && !gameObject.CompareTag("EjectSlam")
+        || other.gameObject.CompareTag("Projectile") ) 
         {
             TakeDamage(10); // temp damage amount
             StartInvincibility(); // i-frames
@@ -43,7 +44,7 @@ public class HealthManager : MonoBehaviour
 
         if (hearts <= 0) 
         {
-            Debug.Log("Game Over");
+            //Die();
         }
     }
 
@@ -81,5 +82,15 @@ public class HealthManager : MonoBehaviour
         }
 
         mat.color = originalColor;
+    }
+
+    void Die()
+
+    {
+
+        // Optional: play death animation, display game over UI
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+
     }
 }
