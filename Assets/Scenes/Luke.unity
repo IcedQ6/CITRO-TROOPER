@@ -1047,7 +1047,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d918533942c0d934ea3c3f09339999b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayList: []
+  levelNum: 0
+  waveNum: 0
+  enemies: []
+  enemyMeshs: []
+  enemy:
+  - type: 0
+    spawns: []
+    repeat: 0
+    delay: 0
 --- !u!4 &1210923531
 Transform:
   m_ObjectHideFlags: 0
